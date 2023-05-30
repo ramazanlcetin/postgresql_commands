@@ -13,7 +13,6 @@ AS SELECT t1.id,
     t1.first_name,
     t1.last_name,
     t1.email,
-    t1.old_id,
     t1.enabled,
     (t1.first_name::text || ' '::text) || t1.last_name::text AS fullname
    FROM dblink('host=mydomain.address dbname=DB_NAME  
