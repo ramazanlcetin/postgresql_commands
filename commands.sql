@@ -19,3 +19,18 @@ AS SELECT t1.id,
                user=USER_NAME password=PASSWORD'::text, 
                'select u.id,u.first_name,u.last_name,u.email,u.enabled from tbl_user_list as u'::text) 
                t1(id character varying, first_name character varying, last_name character varying, email character varying, enabled boolean);
+
+
+-- Create Trigger After Update (Güncelleme Sonrası Çalışacak Trigger Oluşturma)
+CREATE trigger trigger_name AFTER UPDATE ON table_name FOR EACH ROW  EXECUTE FUNCTION my_function_name();
+
+-- Create Function For Trigger After Update (Güncelleme Sonrası Çalışacak Trigger İçin Fonksiyon)
+CREATE OR REPLACE FUNCTION my_function_name() RETURNS trigger LANGUAGE plpgsql
+AS $function$
+    begin
+	   	update my_table_name set updated_date =now() where id=new.id;
+        RETURN NEW;
+    END;
+$function$
+;
+
