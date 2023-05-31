@@ -3,7 +3,7 @@ CREATE TYPE public."enum_publication_type"
 AS ENUM ('RESEARCH','COMPILATION','FACT_PRESENTATION','OTHER','BOOK_PRESENTATION','CORRECTION',
                                                     'EDITORIAL','LETTER','LETTER_TO_EDITOR','MEETING_SUMMARY','REPORT','RETRACTED','SHORT_REPORT','TRANSLATION');
 
---Add Property On Custom Type (Özel Tipe Veri Veri Ekleme)
+--Add Property On Custom Type (Özel Tipe Veri Ekleme)
 ALTER TYPE enum_publication_type ADD VALUE  IF NOT EXISTS  'NOTE';
 
 
@@ -33,4 +33,8 @@ AS $function$
     END;
 $function$
 ;
+
+
+-- Create GIN INDEX for text column (Metinsel ifadeler için vektörel GIN INDEX oluşturma)
+CREATE INDEX my_index_name ON my_table_name USING gin (m_vector(column_name));
 
