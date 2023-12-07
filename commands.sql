@@ -59,5 +59,5 @@ ALTER TABLE tbl_audit_log ADD COLUMN  tag_tsv tsvector  GENERATED ALWAYS AS (to_
 -- Create INDEX---------------------------------------------------------------------------------------------------------------
 CREATE INDEX tbl_audit_log_tag_tsv_index ON tbl_audit_log USING GIN (tag_tsv);
 -- Search Data----------------------------------------------------------------------------------------------------------------
-SELECT * from tbl_audit_log, to_tsquery('Journal-2090') query where query @@ (tag_tsv);
+SELECT * from tbl_audit_log, to_tsquery('Item-1186406') query where query @@ (tag_tsv);
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
